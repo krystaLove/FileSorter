@@ -31,17 +31,17 @@ void WriteThread::_sort()
 {
 	while (m_Work)
 	{
-		// Æä¸ì îñòàëüíûå ïîòîêè
+		// Ð–Ð´Ñ‘Ð¼ Ð¾ÑÑ‚Ð°Ð»ÑŒÐ½Ñ‹Ðµ Ð¿Ð¾Ñ‚Ð¾ÐºÐ¸
 		if (SharedBuffer->empty())
 		{
-			// Çàäåðæêà ìåæäó ïîïûòêàìè ïîëó÷èòü ÷òî-òî èç áóôåðà
+			// Ð—Ð°Ð´ÐµÑ€Ð¶ÐºÐ° Ð¼ÐµÐ¶Ð´Ñƒ Ð¿Ð¾Ð¿Ñ‹Ñ‚ÐºÐ°Ð¼Ð¸ Ð¿Ð¾Ð»ÑƒÑ‡Ð¸Ñ‚ÑŒ Ñ‡Ñ‚Ð¾-Ñ‚Ð¾ Ð¸Ð· Ð±ÑƒÑ„ÐµÑ€Ð°
 			std::this_thread::sleep_for(CHECKING_PERIOD);
 			continue;
 		}
 
 		std::ofstream destStream;
 
-		// Ïîëó÷åíèå ôàéëà èç îáùåé äëÿ âñåõ ïîòîêîâ î÷åðåäè
+		// ÐŸÐ¾Ð»ÑƒÑ‡ÐµÐ½Ð¸Ðµ Ñ„Ð°Ð¹Ð»Ð° Ð¸Ð· Ð¾Ð±Ñ‰ÐµÐ¹ Ð´Ð»Ñ Ð²ÑÐµÑ… Ð¿Ð¾Ñ‚Ð¾ÐºÐ¾Ð² Ð¾Ñ‡ÐµÑ€ÐµÐ´Ð¸
 		File file = *SharedBuffer->wait_and_pop();
 
 		log_stream << "[ File Processing ]" << std::endl << 

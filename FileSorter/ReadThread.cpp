@@ -34,7 +34,7 @@ void ReadThread::_read()
 	{
 		std::this_thread::sleep_for(READING_PERIOD);
 
-		// Получение всех файлов в директории
+		// РџРѕР»СѓС‡РµРЅРёРµ РІСЃРµС… С„Р°Р№Р»РѕРІ РІ РґРёСЂРµРєС‚РѕСЂРёРё
 		for (const auto& entry : fs::directory_iterator(m_Path))
 		{
 
@@ -54,7 +54,7 @@ void ReadThread::_read()
 		while (!catchedFiles.empty())
 		{
 			std::cout << "Read Thread: Writing to buffer" << std::endl;
-			// Обработка файла по пути
+			// РћР±СЂР°Р±РѕС‚РєР° С„Р°Р№Р»Р° РїРѕ РїСѓС‚Рё
 			_writeToBuffer(catchedFiles.front(), sourceStream);
 			catchedFiles.pop();
 		}
@@ -62,25 +62,25 @@ void ReadThread::_read()
 }
 
 /*
-* Вспомогательная функция для загрузки в буфер
+* Р’СЃРїРѕРјРѕРіР°С‚РµР»СЊРЅР°СЏ С„СѓРЅРєС†РёСЏ РґР»СЏ Р·Р°РіСЂСѓР·РєРё РІ Р±СѓС„РµСЂ
 */
 void ReadThread::_writeToBuffer(fs::path path, std::ifstream& sourceStream)
 {
 	std::cout << "Read Thread: Working with: " <<
 		std::endl << path << std::endl;
 
-	// Открытие файла по пути в бинарном виде
+	// РћС‚РєСЂС‹С‚РёРµ С„Р°Р№Р»Р° РїРѕ РїСѓС‚Рё РІ Р±РёРЅР°СЂРЅРѕРј РІРёРґРµ
 	sourceStream.open(path, std::ios::binary | std::ios::in);
 	std::filebuf* pbuf = sourceStream.rdbuf();
 
-	// Размер бинарного файла
+	// Р Р°Р·РјРµСЂ Р±РёРЅР°СЂРЅРѕРіРѕ С„Р°Р№Р»Р°
 	long long size = pbuf->pubseekoff(0, std::ios::end, std::ios::in);
 	std::cout << "Read Thread: File size in bytes: " << size << std::endl;
 
-	// Установление указателя на начало
+	// РЈСЃС‚Р°РЅРѕРІР»РµРЅРёРµ СѓРєР°Р·Р°С‚РµР»СЏ РЅР° РЅР°С‡Р°Р»Рѕ
 	pbuf->pubseekpos(0, std::ios::in);
 
-	// Память по указателю чистится после записи
+	// РџР°РјСЏС‚СЊ РїРѕ СѓРєР°Р·Р°С‚РµР»СЋ С‡РёСЃС‚РёС‚СЃСЏ РїРѕСЃР»Рµ Р·Р°РїРёСЃРё
 	char* buffer = new char[size];
 	pbuf->sgetn(buffer, size);
 
@@ -88,7 +88,7 @@ void ReadThread::_writeToBuffer(fs::path path, std::ifstream& sourceStream)
 
 	sourceStream.close();
 
-	// Удаление считанного в буфер файла из директории
+	// РЈРґР°Р»РµРЅРёРµ СЃС‡РёС‚Р°РЅРЅРѕРіРѕ РІ Р±СѓС„РµСЂ С„Р°Р№Р»Р° РёР· РґРёСЂРµРєС‚РѕСЂРёРё
 	fs::remove(path);
 
 	std::cout << std::endl;
