@@ -10,7 +10,7 @@
 # My
 FileSorter/logs/
 FileSorter/toSort/
-#
+logs/
 
 # User-specific files
 *.rsuser

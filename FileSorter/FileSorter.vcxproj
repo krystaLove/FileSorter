@@ -151,13 +151,17 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="FileSorter.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="ReadThread.cpp" />
+    <ClCompile Include="threadsafe_queue.cpp" />
+    <ClCompile Include="WriteThread.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="dependencies.h" />
     <ClInclude Include="FileSorter.h" />
     <ClInclude Include="ReadThread.h" />
-    <ClInclude Include="SharedBuffer.h" />
+    <ClInclude Include="threadsafe_queue.h" />
     <ClInclude Include="WriteThread.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
