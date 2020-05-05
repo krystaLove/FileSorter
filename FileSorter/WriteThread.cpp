@@ -8,7 +8,7 @@ WriteThread::WriteThread(std::string& path, int index, std::shared_ptr<threadsaf
 
 void WriteThread::Start()
 {
-	t = std::move(std::thread(&WriteThread::_sort, this));
+	_t = std::move(std::thread(&WriteThread::_sort, this));
 }
 
 void WriteThread::Stop()
@@ -19,12 +19,12 @@ void WriteThread::Stop()
 
 void WriteThread::Join()
 {
-	t.join();
+	_t.join();
 }
 
 bool WriteThread::Joinable()
 {
-	return t.joinable();
+	return _t.joinable();
 }
 
 void WriteThread::_sort()

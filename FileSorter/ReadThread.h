@@ -10,7 +10,7 @@ class ReadThread
 {
 private:
 	std::string m_Path;
-	std::thread t;
+	std::thread _t;
 
 	std::shared_ptr<threadsafe_queue<File>> SharedBuffer;
 

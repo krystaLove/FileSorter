@@ -6,17 +6,17 @@ ReadThread::ReadThread(std::string& path, std::shared_ptr<threadsafe_queue<File>
 
 void ReadThread::Start()
 {
-	t = std::move(std::thread(&ReadThread::_read, this));
+	_t = std::move(std::thread(&ReadThread::_read, this));
 }
 
 void ReadThread::Join()
 {
-	t.join();
+	_t.join();
 }
 
 bool ReadThread::Joinable()
 {
-	return t.joinable();
+	return _t.joinable();
 }
 
 void ReadThread::Stop()
